@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Form - Simulador de Custos de Viagem {% endblock %}
+
+{% block conteudo %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <strong>➕ Calculadora de Custos </strong>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('calcular') }}" method="POST">
+
+                    <div class="mb-3">
+                        <label for="distancia" class="form-label">Distância total</label>
+                        <input type="number" class="form-control" id="distancia" name="distancia"
+                               required minlength="2" placeholder="Ex: 350KM">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="consumo" class="form-label">Consumo médio do veículo (KM por Litros)</label>
+                        <input type="number" class="form-control" id="consumo" name="consumo"
+                               required step="0.1" min="1" max="50" placeholder="Ex: 9 KM por Litro">
+                        <div class="form-text">Informe o consumo médio em KM por Litros</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="preco" class="form-label">Preço do litro do combustível (R$)</label>
+                        <input type="number" class="form-control" id="preco" name="preco"
+                               required step="0.01" min="1" max="8.0" placeholder="Ex: R$5.42">
+                        <div class="form-text">Informe o preço do litro do combustível (ex: R$ 5.42)</div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary">💾 Calcular e Salvar</button>
+                        <button type="reset" class="btn btn-outline-secondary">🔄 Limpar</button>
+                        <a href="{{ url_for('resultados') }}" class="btn btn-outline-danger">✖ Nova Simulação</a>
+                    </div>
+
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
